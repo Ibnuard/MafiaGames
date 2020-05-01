@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "493456988398",
+    "firebase_url": "https://mafia-40901.firebaseio.com",
+    "project_id": "mafia-40901",
+    "storage_bucket": "mafia-40901.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:493456988398:android:b3900e7a203765b54d3bff",
+        "android_client_info": {
+          "package_name": "com.ibnuputra.mafia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "493456988398-0jbroceajha5849gbv26incfdqg18tt3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6yLiYmpYXXtxlxTG0zrZa1rzQt2sCbuY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "493456988398-0jbroceajha5849gbv26incfdqg18tt3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

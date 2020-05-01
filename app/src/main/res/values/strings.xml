@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Mafia</string>
+    <string name="title">Mafia Game</string>
+    <string name="log_google">Masuk dengan Google</string>
+    <string name="btn_masuk">Masuk</string>
+    <string name="hint_name">Masukan Username</string>
+    <string name="btn_apply">Terapkan</string>
+    <string name="hint_room">Masukan Room ID</string>
+    <string name="btn_join">Gabung</string>
+</resources>
