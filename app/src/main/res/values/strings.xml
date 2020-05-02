@@ -7,4 +7,11 @@
     <string name="btn_apply">Terapkan</string>
     <string name="hint_room">Masukan Room ID</string>
     <string name="btn_join">Gabung</string>
+    <string name="btn_create">Buat Room</string>
+    <string name="orslap">atau</string>
+    <string name="waiting">Menunggu memulai permainan</string>
+    <string name="defid">000000</string>
+    <string name="btn_play">Mulai Permainan</string>
+    <string name="btn_cancel">Batalkan Permainan</string>
+    <string name="btn_exit">Keluar Room</string>
 </resources>
