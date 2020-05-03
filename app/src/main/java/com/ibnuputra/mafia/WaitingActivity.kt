@@ -1,7 +1,9 @@
 package com.ibnuputra.mafia
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +14,9 @@ import com.google.firebase.database.*
 import com.ibnuputra.mafia.Adapter.UserListAdapter
 import com.ibnuputra.mafia.Model.UserModel
 import kotlinx.android.synthetic.main.activity_waiting.*
+import java.util.*
+import java.util.Collections.shuffle
+import kotlin.collections.ArrayList
 import kotlin.random.Random
 
 class WaitingActivity : AppCompatActivity() {
@@ -40,22 +45,30 @@ class WaitingActivity : AppCompatActivity() {
         getUserList(rid)
 
         btnPlay.setOnClickListener {
+            var mafia = 0
+            val handler = Handler()
+            handler.postDelayed({
+                val intent = Intent(this@WaitingActivity, BattleActivity::class.java)
+                intent.putExtra("RID", rid)
+                startActivity(intent)
+                finish()
+            }, 3000)
             mRef.child("Rooms").child(rid).child("Users").addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {}
 
                 override fun onDataChange(p0: DataSnapshot) {
-                    val role = intArrayOf(0,1)
-                    var mafia = 0
                     for (npsnapshot in p0.children){
-                        Log.d("TAG", "MAFIA $mafia")
-                        val numb = role[Random.nextInt(0, 2)]
-                        Log.d("TAG", "NUMB $numb")
-                        when(numb){
-                            1 -> mafia+=1
-                        }
-                        when(mafia){
-                            1 -> npsnapshot.child("role").ref.setValue(0)
-                            else -> npsnapshot.child("role").ref.setValue(numb)
+                        val num = Random.nextInt(0,2)
+                        when(num){
+                            0 -> npsnapshot.child("role").ref.setValue(0)
+                            else -> {
+                                if (mafia == 0){
+                                    mafia+=1
+                                    npsnapshot.child("role").ref.setValue(1)
+                                }else{
+                                    npsnapshot.child("role").ref.setValue(0)
+                                }
+                            }
                         }
                     }
                 }
