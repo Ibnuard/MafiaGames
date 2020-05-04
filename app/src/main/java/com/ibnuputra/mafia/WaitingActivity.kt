@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.ibnuputra.mafia.Adapter.UserListAdapter
+import com.ibnuputra.mafia.Model.PlayerModel
 import com.ibnuputra.mafia.Model.UserModel
 import kotlinx.android.synthetic.main.activity_waiting.*
 import java.util.*
@@ -45,36 +47,57 @@ class WaitingActivity : AppCompatActivity() {
         getUserList(rid)
 
         btnPlay.setOnClickListener {
-            var mafia = 0
-            val handler = Handler()
-            handler.postDelayed({
-                val intent = Intent(this@WaitingActivity, BattleActivity::class.java)
-                intent.putExtra("RID", rid)
-                startActivity(intent)
-                finish()
-            }, 3000)
-            mRef.child("Rooms").child(rid).child("Users").addListenerForSingleValueEvent(object : ValueEventListener{
+            val uid = mUser.uid
+            mRef.child("Rooms").child(rid).child("Users").child(uid).child("admin").addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {}
 
                 override fun onDataChange(p0: DataSnapshot) {
-                    for (npsnapshot in p0.children){
-                        val num = Random.nextInt(0,2)
-                        when(num){
-                            0 -> npsnapshot.child("role").ref.setValue(0)
-                            else -> {
-                                if (mafia == 0){
-                                    mafia+=1
-                                    npsnapshot.child("role").ref.setValue(1)
-                                }else{
-                                    npsnapshot.child("role").ref.setValue(0)
-                                }
-                            }
-                        }
+                    if (p0.exists()){
+                        rollRoll(rid)
+                    }else{
+                        Toast.makeText(this@WaitingActivity, "Hanya admin yang bisa memulai permainan.", Toast.LENGTH_SHORT).show()
                     }
                 }
 
             })
         }
+    }
+
+    private fun rollRoll(rid: String) {
+        var mafia = 0
+        val handler = Handler()
+        mRef.child("Rooms").child(rid).child("Users").addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onCancelled(p0: DatabaseError) {}
+
+            override fun onDataChange(p0: DataSnapshot) {
+                for (npsnapshot in p0.children){
+                    val data = PlayerModel(1, 0, 0, 0)
+                    npsnapshot.ref.setValue(data).addOnCompleteListener {
+                        if (it.isSuccessful){
+                            handler.postDelayed({
+                                val intent = Intent(this@WaitingActivity, BattleActivity::class.java)
+                                intent.putExtra("RID", rid)
+                                startActivity(intent)
+                                finish()
+                            }, 3000)
+                        }
+                    }
+                    val num = Random.nextInt(0,2)
+                    when(num){
+                        0 -> npsnapshot.child("role").ref.setValue(0)
+                        else -> {
+                            if (mafia == 0){
+                                mafia+=1
+                                npsnapshot.child("role").ref.setValue(1)
+                            }else{
+                                npsnapshot.child("role").ref.setValue(0)
+                            }
+                        }
+                    }
+                }
+            }
+
+        })
     }
 
     private fun getUserList(rid: String) {

@@ -11,13 +11,17 @@ import com.google.firebase.database.*
 import com.ibnuputra.mafia.Adapter.ChatAdapter
 import com.ibnuputra.mafia.Adapter.UserListAdapter
 import com.ibnuputra.mafia.Model.ChatModel
+import com.ibnuputra.mafia.Model.PlayerModel
 import com.ibnuputra.mafia.Model.UserModel
 import kotlinx.android.synthetic.main.activity_battle.*
 
 class BattleActivity : AppCompatActivity() {
     private lateinit var chAdapter: ChatAdapter
+    private lateinit var usrAdapter: UserListAdapter
     private lateinit var resultList:MutableList<ChatModel>
+    private lateinit var resultUser: MutableList<PlayerModel>
     private lateinit var chRecycler: RecyclerView
+    private lateinit var usrRecycler: RecyclerView
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mRef: DatabaseReference
     private lateinit var mUser: FirebaseUser

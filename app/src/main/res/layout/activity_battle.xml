@@ -8,114 +8,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="20dp"
+        android:padding="24dp"
         android:orientation="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="356dp">
-            <RelativeLayout
-                android:id="@+id/header"
-                android:paddingVertical="14dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/timeTv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Waktu Diskusi : "
-                    android:fontFamily="@font/nunintosans"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorBlack"/>
-                <TextView
-                    android:layout_toRightOf="@id/timeTv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="00"
-                    android:fontFamily="@font/nunintosans"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorBlack"/>
-                <TextView
-                    android:id="@+id/timeTime"
-                    android:layout_alignParentRight="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Siang"
-                    android:fontFamily="@font/nunintosans"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorBlack"/>
-            </RelativeLayout>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_below="@id/header"
-                android:layout_marginVertical="36dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/timeTime"
+                android:layout_alignParentLeft="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Siang Hari"
+                android:fontFamily="@font/nunintosans"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"/>
+            <TextView
+                android:id="@+id/timeTv"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Waktu Diskusi : "
+                android:fontFamily="@font/nunintosans"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"/>
         </RelativeLayout>
-        <RelativeLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_marginVertical="18dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <RelativeLayout
-                android:id="@+id/footer"
-                android:layout_alignParentBottom="true"
-                android:layout_width="match_parent"
-                android:layout_height="256dp">
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_chat"
-                    android:layout_marginVertical="18dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/formChat"
-                    android:layout_toLeftOf="@id/btnSend"
-                    android:layout_alignParentBottom="true"
-                    android:layout_width="wrap_content"
-                    android:layout_margin="14dp"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="10dp"
-                    app:cardMaxElevation="0dp"
-                    app:cardElevation="0dp"
-                    app:cardBackgroundColor="@color/colorGray">
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="14dp">
-                        <EditText
-                            android:id="@+id/chatForm"
-                            android:paddingHorizontal="24dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:maxHeight="125dp"
-                            android:textSize="12sp"
-                            android:textColor="@color/colorBlack"
-                            android:fontFamily="@font/nunintosans"
-                            android:maxLength="64"
-                            android:hint="Masukan chat diskusi Anda..."
-                            android:background="@android:color/transparent"/>
-                    </RelativeLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/btnSend"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_width="wrap_content"
-                    android:layout_margin="14dp"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="12dp"
-                    app:cardMaxElevation="0dp"
-                    app:cardElevation="0dp"
-                    app:cardBackgroundColor="@color/colorGray">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="12dp"
-                        android:src="@drawable/ic_send"/>
-                </androidx.cardview.widget.CardView>
-            </RelativeLayout>
-        </RelativeLayout>
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
